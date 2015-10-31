@@ -33,7 +33,7 @@ class App extends React.Component {
 
 App = connect(function (state) {
     return {
-        count: state,
+        count: state.counter,
     };
 })(App);
 

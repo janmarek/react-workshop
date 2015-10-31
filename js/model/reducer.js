@@ -1,9 +1,13 @@
-// import {combineReducers} from 'redux';
+import {combineReducers} from 'redux';
+import counterReducer from './counterReducer';
 
-export default (state = 0, action) => {
-    if (action.type === 'ADD') {
-        return state + action.amount;
-    }
+export default combineReducers({
+    counter: counterReducer,
+});
 
-    return state;
-};
+// export default (state = {}, action) => {
+//     return {
+//         counter: counterReducer(state.counter, action),
+//         // ...
+//     };
+// };
