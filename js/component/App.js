@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import Name from './Name';
 import {add} from '../model/counterActions';
+import {selectCount} from '../model/counterSelectors';
 
 import 'font-awesome/css/font-awesome.css';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -33,7 +34,7 @@ class App extends React.Component {
 
 App = connect(function (state) {
     return {
-        count: state.counter,
+        count: selectCount(state),
     };
 })(App);
 
