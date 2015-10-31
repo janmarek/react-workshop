@@ -1,1 +1,1 @@
-import './index-react';
+import './index-redux';
