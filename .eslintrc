@@ -1,0 +1,95 @@
+{
+    "parser": "babel-eslint",
+    "plugins": [
+        "react"
+    ],
+    "rules": {
+        "semi": 2,
+        "quotes": [
+            1,
+            "single"
+        ],
+        "strict": [
+            2,
+            "never"
+        ],
+        "no-alert": 0,
+        "new-cap": 0,
+        "no-empty": 0,
+        "valid-jsdoc": [
+            1,
+            {
+                "prefer": {
+                    "returns": "return"
+                },
+                "requireParamDescription": false,
+                "requireReturnDescription": false,
+                "requireReturn": false
+            }
+        ],
+        "no-loop-func": 2,
+        "no-shadow": 1,
+        "no-use-before-define": 0,
+        "no-path-concat": 0,
+        "comma-spacing": 2,
+        "camelcase": 1,
+        "array-bracket-spacing": [
+            2,
+            "never"
+        ],
+        "brace-style": [
+            2,
+            "1tbs",
+            {
+                "allowSingleLine": false
+            }
+        ],
+        "comma-dangle": [
+            1,
+            "always-multiline"
+        ],
+        "no-multiple-empty-lines": [
+            1,
+            {
+                "max": 1
+            }
+        ],
+        "no-console": 1,
+        "space-in-parens": [
+            2,
+            "never"
+        ],
+        "space-infix-ops": 0,
+        "no-unneeded-ternary": 2,
+        "object-curly-spacing": [
+            2,
+            "never"
+        ],
+        "space-after-keywords": [
+            2,
+            "always"
+        ],
+        "space-before-function-paren": [
+            2,
+            {
+                "anonymous": "always",
+                "named": "never"
+            }
+        ],
+        "spaced-comment": [
+            2,
+            "always"
+        ],
+        "quote-props": [
+            2,
+            "as-needed"
+        ],
+        "no-var": 1
+    },
+    "env": {
+        "mocha": true,
+        "node": true,
+        "browser": true,
+        "jasmine": true
+    }
+}
