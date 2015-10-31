@@ -4,8 +4,14 @@ import App from './component/App';
 import {Provider} from 'react-redux';
 import reducer from './model/reducer';
 import {createStore, applyMiddleware} from 'redux';
+import thunk from 'redux-thunk';
 
-const store = createStore(reducer);
+// create a store that has redux-thunk middleware enabled
+const createStoreWithMiddleware = applyMiddleware(
+  thunk
+)(createStore);
+
+const store = createStoreWithMiddleware(reducer);
 
 render(<Provider store={store}>
     <App />

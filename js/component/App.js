@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import Name from './Name';
+import Weather from './Weather';
 import {add} from '../model/counterActions';
 import {selectCount} from '../model/counterSelectors';
 
@@ -27,6 +28,7 @@ class App extends React.Component {
                 {' '}
                 <a onClick={this.click.bind(this)}>Click</a>
             </p>
+            <Weather />
         </div>;
     }
 
