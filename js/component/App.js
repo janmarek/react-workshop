@@ -9,7 +9,10 @@ class App extends React.Component {
 
     constructor() {
         super();
-        this.state = {clicked: 0};
+        this.state = {
+            clicked: 0,
+            say: 'Hello',
+        };
     }
 
     click() {
@@ -23,7 +26,7 @@ class App extends React.Component {
     render() {
         return <div className="container">
             <h1>
-                Hello {/* nazdar */}
+                {this.state.say} {/* nazdar */}
                 {' '}
                 <Name name="Honza" repeat={3} />
             !</h1>
