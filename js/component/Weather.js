@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {search, submitSearch} from '../model/weatherActions';
+import * as selectors from '../model/weatherSelectors'
 import $ from 'jquery';
 import config from '../config';
 
@@ -34,9 +35,9 @@ class Weather extends React.Component {
                 />
             </p>
 
-            {this.props.weather && <p>
-                temperature: {this.props.weather.main.temp}<br/>
-                better temperature: {this.props.weather.main.temp * 2}
+            {this.props.temperature && <p>
+                temperature: {this.props.temperature}<br/>
+                better temperature: {this.props.temperature * 2}
             </p>}
         </div>;
     }
@@ -44,8 +45,8 @@ class Weather extends React.Component {
 }
 
 Weather = connect(state => ({
-    query: state.weather.query,
-    weather: state.weather.weather,
+    query: selectors.selectQuery(state),
+    temperature: selectors.selectTemperature(state),
 }))(Weather);
 
 export default Weather;

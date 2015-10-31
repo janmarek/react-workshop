@@ -1,5 +1,6 @@
 import config from '../config';
 import $ from 'jquery';
+import {selectQuery} from './weatherSelectors';
 
 export const SEARCH = 'WEATHER_SEARCH';
 export const SAVE_DATA = 'WEATHER_SAVE_DATA';
@@ -14,7 +15,7 @@ export function search(query) {
 export function submitSearch() {
     return (dispatch, getState) => {
         const state = getState();
-        const query = state.weather.query;
+        const query = selectQuery(state);
 
         const url = config.apiUrl +
             '/weather?q=' + query +
