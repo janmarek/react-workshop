@@ -1,4 +1,4 @@
-export default function selectWeatherNamespace(state) {
+export function selectWeatherNamespace(state) {
     return state.weather;
 }
 
