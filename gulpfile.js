@@ -1,15 +1,15 @@
 /* eslint no-var: 0 */
 
-require('babel/register')();
+require('babel-register');
 
 var path = require('path');
 var gulp = require('gulp');
 var gulpUtil = require('gulp-util');
 var del = require('del');
-var createTestTask = require('./js/test/createTestTask');
-var createWebpackBuildTask = require('./js/webpack/createBuildTask');
-var createWebpackWatchTask = require('./js/webpack/createWatchTask');
-var createWebpackRunDevServerTask = require('./js/webpack/createRunDevServerTask');
+var createTestTask = require('./js/test/createTestTask').default;
+var createWebpackBuildTask = require('./js/webpack/createBuildTask').default;
+var createWebpackWatchTask = require('./js/webpack/createWatchTask').default;
+var createWebpackRunDevServerTask = require('./js/webpack/createRunDevServerTask').default;
 
 var config = {
     production: false,

@@ -1,6 +1,7 @@
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import path from 'path';
 import webpack from 'webpack';
+import autoprefixer from 'autoprefixer';
 
 export default (mode, paths) => {
     const isWatch = mode === 'watch';
@@ -27,8 +28,8 @@ export default (mode, paths) => {
             loaders: [
                 {
                     test: /\.js$/,
-                    exclude: /node_modules(?!\/shipito-js-)/,
-                    loaders: ['babel-loader'],
+                    exclude: /node_modules/,
+                    loader: 'babel-loader?cacheDirectory',
                 },
                 {
                     test: /\.json$/,
@@ -37,16 +38,18 @@ export default (mode, paths) => {
                 {
                     test: /\.css$/,
                     loader: isHot ?
-                        'style-loader!css-loader!autoprefixer-loader' :
-                        ExtractTextPlugin.extract('css-loader!autoprefixer-loader'),
+                        'style-loader!css-loader' :
+                        ExtractTextPlugin.extract(
+                            'css-loader' + (isProduction ? '?minify&-autoprefixer!postcss-loader' : '')
+                        ),
                 },
                 {
                     test: /\.gif$/,
-                    loader: 'url-loader?mimetype=image/gif',
+                    loader: 'url-loader?limit=4000&mimetype=image/gif',
                 },
                 {
                     test: /\.png$/,
-                    loader: 'url-loader?mimetype=image/png',
+                    loader: 'url-loader?limit=4000&mimetype=image/png',
                 },
                 {
                     test: /\.jpe?g$/,
@@ -63,6 +66,11 @@ export default (mode, paths) => {
             ],
         },
         plugins: [],
+        postcss() {
+            return [autoprefixer({
+                browsers: ['> 1%', 'last 2 versions', 'Firefox ESR'],
+            })];
+        },
     };
 
     if (!isHot) {
@@ -73,24 +81,24 @@ export default (mode, paths) => {
         );
     }
 
-    // if (isProduction) {
-    //     config.plugins = config.plugins.concat([
-    //         new webpack.DefinePlugin({
-    //             'process.env': {
-    //                 NODE_ENV: '"production"',
-    //             },
-    //         }),
-    //         new webpack.optimize.DedupePlugin(),
-    //         new webpack.optimize.OccurenceOrderPlugin(),
-    //         new webpack.optimize.UglifyJsPlugin({
-    //             compress: {
-    //                 warnings: false,
-    //             },
-    //             sourceMap: false,
-    //             comments: /$./, // do not keep any comments
-    //         }),
-    //     ]);
-    // }
+    if (isProduction) {
+        config.plugins = config.plugins.concat([
+            new webpack.DefinePlugin({
+                'process.env': {
+                    NODE_ENV: '"production"',
+                },
+            }),
+            new webpack.optimize.DedupePlugin(),
+            new webpack.optimize.OccurenceOrderPlugin(),
+            new webpack.optimize.UglifyJsPlugin({
+                compress: {
+                    warnings: false,
+                },
+                sourceMap: false,
+                comments: /$./, // do not keep any comments
+            }),
+        ]);
+    }
 
     if (isHot) {
         config.plugins = config.plugins.concat([

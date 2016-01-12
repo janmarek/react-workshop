@@ -8,6 +8,7 @@ import createWebpackConfig from './createWebpackConfig';
 export default (paths) => {
     return () => {
         const config = createWebpackConfig('dev-server', paths);
+        const documentRoot = paths.documentRoot;
 
         const app = express();
         const compiler = webpack(config);
@@ -19,8 +20,10 @@ export default (paths) => {
 
         app.use(webpackHotMiddleware(compiler));
 
+        app.use(express.static(documentRoot));
+
         app.get('*', (req, res) => {
-            res.sendFile(path.join(__dirname, '../../public/index.html'));
+            res.sendFile(path.join(documentRoot, 'index.html'));
         });
 
         app.listen(paths.devServerPort, 'localhost', (err) => {
